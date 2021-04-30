@@ -24,5 +24,5 @@ public class PrankGenerator {
         }
         return victimList;
     }
-    
+
 }
