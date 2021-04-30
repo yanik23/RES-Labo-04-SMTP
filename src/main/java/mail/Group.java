@@ -19,4 +19,9 @@ public class Group {
     public List<Person> getTo(){
         return to;
     }
+
+    @Override
+    public String toString() {
+        return "from = " + from + "\r\n"  + " to =  " + to + "\r\n";
+    }
 }

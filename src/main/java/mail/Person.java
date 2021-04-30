@@ -24,10 +24,6 @@ public class Person {
 
     @Override
     public String toString() {
-        return "Person{" +
-                "name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", email='" + email + '\'' +
-                '}';
+        return "name = " + name + ", surname = " + surname  + ", email = " + email + "\r\n";
     }
 }

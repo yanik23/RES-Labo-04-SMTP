@@ -1,3 +1,4 @@
+import mail.Group;
 import mail.Person;
 import smtp.SmtpClient;
 
@@ -11,12 +12,15 @@ public class Main {
 
         PrankGenerator prankGenerator = new PrankGenerator();
 
-        List<Person> list = new ArrayList<Person>();
-        list = prankGenerator.readVictimList(new FileInputStream("./config/victimList.txt"));
+        List<Person> personlist = new ArrayList<Person>();
+        personlist = prankGenerator.readVictimList(new FileInputStream("./config/victimList.txt"));
+        List<Group> groupList = prankGenerator.buildRandomGroups(personlist, 8);
 
-        for(int i = 0; i < list.size(); ++i){
-            System.out.println(list.get(i));
+        for(int i = 0; i < groupList.size(); ++i){
+            System.out.println("Group nr " + i + " : ");
+            System.out.println(groupList.get(i));
         }
+
 
        /* try{
             ConfigurationManager.readFromInputStream(new FileInputStream("app.config"));
