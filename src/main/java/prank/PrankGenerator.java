@@ -1,4 +1,6 @@
 import mail.Group;
+import mail.Mail;
+import mail.Message;
 import mail.Person;
 
 import java.io.*;
@@ -52,11 +54,53 @@ public class PrankGenerator {
 
             Person sender = victimList.get(numberOfVictims-1); //choosing a sender
             victimList.remove(sender); //removing the sender so he doesn't sends himself a mail
-            
+
             Group g = new Group(sender, victimList);
             groupList.add(g);
         }
         return groupList;
+    }
+
+    public List<Mail> createRandomMails(List<Group> listOfGroups, InputStream messages) throws IOException {
+        List<Mail> mailList = new ArrayList<>();
+        List<Message> messageList = readMessageList(messages);
+
+        for(int i = 0; i < listOfGroups.size(); ++i){
+            Message message = getRandomMessage(messageList);
+            Mail mail = new Mail(message.getSubject(), message.getContent(), listOfGroups.get(i).getFrom(), listOfGroups.get(i).getTo());
+            mailList.add(mail);
+        }
+
+        return mailList;
+    }
+
+    public Message getRandomMessage(List<Message> messageList){
+        Random rand = new Random();
+        return messageList.get(rand.nextInt(messageList.size()));
+    }
+    public List<Message> readMessageList(InputStream messages) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(messages));
+        List<Message> messageList = new ArrayList<Message>();
+
+        String subject = "";
+        String content = "";
+        String line;
+        while((line = br.readLine()) != null) {
+            if(line.contains("Subject:")) {
+                subject = line.substring(line.indexOf(":") + 1);
+            }
+            else if (!line.contains("==")) {
+                content += line;
+            }
+
+            if(line.contains("==")) {
+                Message message = new Message(subject, content);
+                messageList.add(message);
+                content = "";
+            }
+        }
+        return messageList;
+
     }
 
 
