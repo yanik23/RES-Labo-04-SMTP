@@ -9,7 +9,7 @@ public class Mail {
     private Person from;
     private List<Person> to;
 
-    Mail(String subject, String content, Person from, List<Person> to){
+    public Mail(String subject, String content, Person from, List<Person> to){
         this.subject = subject;
         this.content = content;
         this.from = from;
@@ -30,5 +30,15 @@ public class Mail {
 
     public List<Person> getTo() {
         return to;
+    }
+
+    @Override
+    public String toString() {
+        return "Mail{" +
+                "subject='" + subject + '\'' +
+                ", content='" + content + '\'' +
+                ", from=" + from +
+                ", to=" + to +
+                '}';
     }
 }

@@ -1,3 +1,5 @@
+package prank;
+
 import mail.Group;
 import mail.Mail;
 import mail.Message;
@@ -90,7 +92,7 @@ public class PrankGenerator {
                 subject = line.substring(line.indexOf(":") + 1);
             }
             else if (!line.contains("==")) {
-                content += line;
+                content += line + "\r\n";
             }
 
             if(line.contains("==")) {

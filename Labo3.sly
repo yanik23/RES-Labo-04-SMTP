@@ -14,7 +14,7 @@
       <source>65612</source>
       <target>64492</target>
     </dependency>
-    <entity entityType="CLASS" id="65612" isAbstract="false" name="PrankGenerator" visibility="PUBLIC">
+    <entity entityType="CLASS" id="65612" isAbstract="false" name="prank.PrankGenerator" visibility="PUBLIC">
       <method isAbstract="false" isStatic="true" name="readPerson" returnType="List&lt;Person&gt;" view="DEFAULT" visibility="PUBLIC">
         <variable const="false" name="file" type="int"/>
       </method>
