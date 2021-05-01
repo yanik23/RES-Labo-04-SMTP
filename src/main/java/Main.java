@@ -1,5 +1,6 @@
 import mail.Group;
 import mail.Person;
+import prank.PrankGenerator;
 import smtp.SmtpClient;
 
 import java.io.FileInputStream;
@@ -21,6 +22,8 @@ public class Main {
             System.out.println(groupList.get(i));
         }
 
+        prankGenerator.readMessageFromInputStream(new FileInputStream("./config/messages.txt"));
+        prankGenerator.printMessages();
 
        /* try{
             ConfigurationManager.readFromInputStream(new FileInputStream("app.config"));
