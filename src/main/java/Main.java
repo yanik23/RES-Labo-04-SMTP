@@ -12,10 +12,11 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) throws IOException {
 
-        ConfigurationManager.readFromInputStream(new FileInputStream("./config/app.config"));
-        PrankGenerator prankGenerator = new PrankGenerator();
+        //.readFromInputStream(new FileInputStream("./config/config.properties"));
+        //PrankGenerator prankGenerator = new PrankGenerator();
 
-        System.out.println(prankGenerator.buildPrank(new FileInputStream("./config/victimList.txt"), new FileInputStream("./config/messages.txt")));
-        
+       // System.out.println(prankGenerator.buildPrank(new FileInputStream("./config/victimList.utf8"), new FileInputStream("./config/messages.utf8")));
+        SmtpClient smtp = new SmtpClient();
+        smtp.sendSmtpRequest();
     }
 }

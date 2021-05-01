@@ -20,6 +20,7 @@ public class PrankGenerator {
         String subject;
         String content;
     }
+
     List<Person> allVictims;
     List<Message> allMessages;
 
@@ -125,10 +126,15 @@ public class PrankGenerator {
             allMessages = readMessageFromInputStream(messages);
 
             Random rand = new Random();
+
+            //select a random message from all available message
             Message randomMessage = allMessages.get(rand.nextInt(allMessages.size()));
+
+            //select a random group to send to
             List<Group> groups = buildRandomGroups(allVictims, Integer.parseInt(ConfigurationManager.getPropertyValue("numberOfGroups")));
             Group randomGroup = groups.get(rand.nextInt(groups.size()));
 
+            //create a new mail that has to be sent
             Mail mail = new Mail(randomMessage.subject,randomMessage.content,randomGroup.getFrom(),randomGroup.getTo());
 
             return mail;
