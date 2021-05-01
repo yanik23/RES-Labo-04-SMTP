@@ -1,6 +1,8 @@
 package prank;
 
+import config.ConfigurationManager;
 import mail.Group;
+import mail.Mail;
 import mail.Person;
 
 import java.io.BufferedReader;
@@ -37,13 +39,16 @@ public class PrankGenerator {
             System.out.println(m.content);
         }
     }
-    public void readMessageFromInputStream(InputStream inputStream)throws IOException {
+    public List<Message> readMessageFromInputStream(InputStream inputStream)throws IOException {
+        List<Message> messages = new ArrayList<>();
+
         try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
             String line;
             Message m = new Message();
             StringBuilder content = new StringBuilder();
             String subject = "";
             String subjectDefiner = "Subject:";
+
             while ((line = br.readLine()) != null) {
                 if(line.contains(subjectDefiner)){
                     subject = line.substring(line.indexOf(subjectDefiner)+subjectDefiner.length());
@@ -51,7 +56,7 @@ public class PrankGenerator {
                 else if(line.contains("==")) {
                     m.content = content.toString();
                     m.subject = subject;
-                    allMessages.add(m);
+                    messages.add(m);
                     m = new Message();
                     content = new StringBuilder();
 
@@ -63,6 +68,7 @@ public class PrankGenerator {
                 }
             }
         }
+        return messages;
     }
 
     public List<Person> readVictimList(InputStream victims) throws IOException {
@@ -112,7 +118,24 @@ public class PrankGenerator {
         }
         return groupList;
     }
-    public Prank buildPrank(){
+    public Mail buildPrank(InputStream victims, InputStream messages){
+
+        try {
+            allVictims = readVictimList(victims);
+            allMessages = readMessageFromInputStream(messages);
+
+            Random rand = new Random();
+            Message randomMessage = allMessages.get(rand.nextInt(allMessages.size()));
+            List<Group> groups = buildRandomGroups(allVictims, Integer.parseInt(ConfigurationManager.getPropertyValue("numberOfGroups")));
+            Group randomGroup = groups.get(rand.nextInt(groups.size()));
+
+            Mail mail = new Mail(randomMessage.subject,randomMessage.content,randomGroup.getFrom(),randomGroup.getTo());
+
+            return mail;
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
 
         return null;
     }
