@@ -21,4 +21,9 @@ public class Person {
     public String getEmail(){
         return email;
     }
+
+    @Override
+    public String toString() {
+        return "name = " + name + ", surname = " + surname  + ", email = " + email + "\r\n";
+    }
 }
