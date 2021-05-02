@@ -22,20 +22,22 @@ L'utilisateur choisira ensuite le nombre de groupe de victimes qu'il veut créer
 Avant de se lancer dedans il faut savoir que ce projet sert à un but purement académique et d'apprentissage. Il est ilégal par la loi d'envoyer des emails forgés ou encore de se faire passer pour quelqu'un d'autres. D'ailleurs vu que la plupart de fournisseurs internet bloquent les envois et que nous ne voulons pas surcharger un vrai serveur SMTP, nous allons utiliser un "Mock Server" SMTP.
 
 ### C'est quoi un "Mock Server" ?
-![mockserver](images/mockmock.PNG)
 
 Un mock serveur c'est tout simplement une simulation de serveur. On va simuler un serveur SMTP en local sur notre machine auquel on va envoyer nos emails.
 Il en existe plusieurs sur internet et github. 
 
 Pour notre projet nous avons décidé d'utiliser le serveur SMTP [MockMock](https://github.com/tweakers/MockMock) qui nous fourni une interface web bien pratique.
 
-Pour lancer le mock server il suffit cloner ce [repository](https://github.com/tweakers/MockMock) .
-Une fois cloné rendez vous dans le dossier release et localiser le fichier MockMock.jar
+Pour lancer le mock server il suffit cloner ce [repository](https://github.com/tweakers/MockMock).
+Une fois cloné rendez-vous dans le dossier release et localiser le fichier MockMock.jar
 lancer une console dans ce dossier et executez la commande:
 >java -jar mockmock.jar
+
+![mockserver](images/mockmock.PNG)
+
 ### J'ai lancé MockMock mais rien ne se passse ?
 
-Dans un navigateur web entrez l'url suivant **localhost:8282** le port 8282 etant le port par défault utilisé par mockmock
+Dans un navigateur web entrez l'url suivante **localhost:8282** le port 8282 etant le port par défault utilisé par mockmock.
 
 ### Ok, j'ai un serveur qui peut recevoir de mails, et le client ?
 89
