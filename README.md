@@ -4,7 +4,7 @@
 |Auteur|email|
 |-----------------|--------------|
 | Emmanuel Janssens | emmanuel.janssens@heig-vd.ch|
-| Lange Yanik|yanik.lange@heig-vd.ch
+| Lange Yanik | yanik.lange@heig-vd.ch
 
 ## Introduction
 
@@ -29,22 +29,20 @@ Il en existe plusieurs sur internet et github.
 
 Pour notre projet nous avons décidé d'utiliser le serveur SMTP [MockMock](https://github.com/tweakers/MockMock) qui nous fourni une interface web bien pratique.
 
-Pour lancer le mock server il suffit cloner ce [repository](https://github.com/tweakers/MockMock).
-Une fois cloné rendez-vous dans le dossier release et localiser le fichier MockMock.jar.
+Pour lancer le mock server il suffit cloner ce [repository](https://github.com/tweakers/MockMock),
+faire la modification [suivante](https://github.com/tweakers/MockMock/pull/8/commits/fa4bea3079d88d7d7b9a28e3b0864ba6f3d9f7ff) dans le pom.xml (GoogleCode ayant fermé).
+Une fois cloné et la modification du pom.xml faites, rendez-vous dans le dossier **/release** et localiser le fichier **MockMock.jar**.
 Ensuite lancez une console dans ce dossier et executez la commande:
 >java -jar mockmock.jar
-
-
 
 ### J'ai lancé MockMock mais rien ne se passse ?
 
 Dans un navigateur web entrez l'url suivante **localhost:8282** le port http 8282 etant le port par défault utilisé par mockmock (le port SMTP par défault est le 25).
 
 ### Ok, j'ai un serveur qui peut recevoir de mails, et le client ?
-89
-Pour le client il suffira de cloner ce repos et de le lancer depuis votre IDE préféré ou alors en lançant le .jar se trouvant dans le dossier release.
+
 Pour lancer le client il suffit de cloner ce repository.
-Une fois cloné rendez-vous dans le dossier release et localiser le fichier RES-Labo-04-SMTP-1.0-SNAPSHOT.jar.
+Une fois cloné rendez-vous dans le dossier **/release** et localiser le fichier **RES-Labo-04-SMTP-1.0-SNAPSHOT.jar**.
 Ensuite lancez une console dans ce dossier et executez la commande:
 >java -jar RES-Labo-04-SMTP-1.0-SNAPSHOT.jar
 
@@ -106,23 +104,15 @@ Classe définissant un message. Un message est définit par un sujet et un conte
 Classe définissant une personne qui sera une des victimes.
 
 #### PrankGenerator
+
 Cette classe est le coeur de génération de nos prank, elle contient divers fonction qui permettent de parser les fichiers
 mis a disposition, et d'ainsi génerer les les objet nécessaire pour creer les mails correctement
-
-**Liste des fonctions :**
-
-- List<Person> readVictimList(InputStream victims)
-  * Lis le fichier victim.utf8 et parse les donnée pour creer une liste de personnes
-- List<Group> buildRandomGroups(List<Person> personList, int numberOfGroups)
-  * Utilise la propriété numberOfGroup et contruit le nombre de groupe approprié avec une sélection aléatoire de personnes
-- List<Mail> createRandomMails(List<Group> listOfGroups, InputStream messages)
-  * Construit une liste de Mails qui sont nos prank a être envoyé
-- Message getRandomMessage(List<Message> messageList)
-  * retourne un message aléatoire dans une liste de message
-- List<Message> readMessageList(InputStream messages)
-    * lis le fichier message.utf8 retourne une liste de message
 
 #### SmtpClient
 
 cette classe permet de mettre en oeuvre un client smtp basique, ce dernier utilises les données générées par 
 notre prankGenerator pour les envoyer via le protocole SMTP.
+
+#### ConfigurationManager
+
+Cette classe lit le fichier de configuration config.properties
