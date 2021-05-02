@@ -7,7 +7,7 @@ L'objectif de ce projet est de se familiariser avec le protocole SMTP et donc fa
 
 ### Email "prank" ? Qu'est-ce que c'est ?
 
-L'utilisateur aura une liste de victimes (un fichier victimsList.txt avec une liste de emails) sur lesquelles il veut faire des blagues. Il aura également un fichier messages.txt avec les messages blagues qui seront envoyées.
+L'utilisateur aura une liste de victimes (un fichier victimsList.txt avec une liste de emails) sur lesquelles il veut faire le prank. Il aura également un fichier messages.txt qui contient les messages pour le prank qui seront envoyées.
 L'utilisateur choisira ensuite le nombre de groupe de victimes qu'il veut créer (dans chaque groupe il y aura toujours une victime qui envoit le mail et au moins 2 personnes qui vont le recevoir). Les messages du fichier messages.txt seront choisi au hasard pour chaque groupe.
 
 
