@@ -22,6 +22,7 @@ L'utilisateur choisira ensuite le nombre de groupe de victimes qu'il veut créer
 Avant de se lancer dedans il faut savoir que ce projet sert à un but purement académique et d'apprentissage. Il est ilégal par la loi d'envoyer des emails forgés ou encore de se faire passer pour quelqu'un d'autres. D'ailleurs vu que la plupart de fournisseurs internet bloquent les envois et que nous ne voulons pas surcharger un vrai serveur SMTP, nous allons utiliser un "Mock Server" SMTP.
 
 ### C'est quoi un "Mock Server" ?
+![mockserver](images/mockmock.PNG)
 
 Un mock serveur c'est tout simplement une simulation de serveur. On va simuler un serveur SMTP en local sur notre machine auquel on va envoyer nos emails.
 Il en existe plusieurs sur internet et github. 
@@ -33,7 +34,7 @@ Une fois cloné rendez-vous dans le dossier release et localiser le fichier Mock
 lancer une console dans ce dossier et executez la commande:
 >java -jar mockmock.jar
 
-![mockserver](images/mockmock.PNG)
+
 
 ### J'ai lancé MockMock mais rien ne se passse ?
 
