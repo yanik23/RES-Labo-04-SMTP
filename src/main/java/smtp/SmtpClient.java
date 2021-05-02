@@ -50,7 +50,7 @@ public class SmtpClient {
      * Connect to the smtp server
      * @throws IOException
      */
-    public void connect() throws IOException {
+    private void connect() throws IOException {
         try{
             _client = new Socket(ConfigurationManager.getPropertyValue("smtpServerAdress"),Integer.parseInt(ConfigurationManager.getPropertyValue("smtpServerPort")));
             _smtpOutputStream = new BufferedWriter(new OutputStreamWriter(_client.getOutputStream(), StandardCharsets.UTF_8));
@@ -61,6 +61,10 @@ public class SmtpClient {
         }
     }
 
+    /**
+     * Disconnects from the server
+     * @throws IOException
+     */
     private void disconnect() throws  IOException{
         _smtpInputStream.close();
         _smtpOutputStream.close();
@@ -72,7 +76,7 @@ public class SmtpClient {
      * @param args if any arguments are required
      * @throws IOException
      */
-    public void sendCommand(String cmdLine, String args) throws IOException {
+    private void sendCommand(String cmdLine, String args) throws IOException {
 
         System.out.println("c: "+ cmdLine);
 
@@ -81,6 +85,11 @@ public class SmtpClient {
 
     }
 
+    /**
+     * Print server response
+     * @param code what code is valid
+     * @throws IOException
+     */
     private void printExpectedOutput(String code) throws IOException {
         String line;
 
@@ -94,9 +103,16 @@ public class SmtpClient {
             disconnect();
         }
     }
+
+    /**
+     * Format the content of the header
+     * @param p
+     * @return
+     */
     private String formatMailheader(Person p){
         return p.getName() + " " + p.getSurname() + "<" + p.getEmail() + ">";
     }
+
     /**
      * Write the mail header
      * @param mail mail data
@@ -122,6 +138,7 @@ public class SmtpClient {
         sendCommand("Content-Type:"," text/plain; charset=utf-8" );
 
         sendCommand(mail.getMessage().getContent(),"");
+
         sendCommand("\r\n.\r\n","");
     }
 
@@ -134,7 +151,7 @@ public class SmtpClient {
     private void sendMail(Mail mail) throws IOException {
         connect();
         printExpectedOutput(WELCOME);
-        if (_smtpOutputStream != null && _smtpInputStream != null && _smtpInputStream != null) {
+        if (_smtpOutputStream != null && _smtpInputStream != null && _client != null) {
 
             //send EHLO
             sendCommand(EHLO, ConfigurationManager.getPropertyValue("smtpServerAdress"));
