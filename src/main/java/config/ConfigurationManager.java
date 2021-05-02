@@ -1,4 +1,4 @@
-/**
+package config; /**
  * Reads configuration data contained in an
  * .config file
  *

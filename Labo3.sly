@@ -43,7 +43,7 @@
       </role>
     </association>
     <entity entityType="CLASS" id="64493" isAbstract="false" name="SmtpClient" visibility="PUBLIC"/>
-    <entity entityType="CLASS" id="64492" isAbstract="false" name="ConfigurationManager" visibility="PUBLIC">
+    <entity entityType="CLASS" id="64492" isAbstract="false" name="config.ConfigurationManager" visibility="PUBLIC">
       <attribute const="false" defaultValue="" isStatic="true" name="smtpServerAdress" type="String" visibility="PRIVATE"/>
       <attribute const="false" defaultValue="" isStatic="true" name="smtpServerPort" type="int" visibility="PRIVATE"/>
       <attribute const="false" defaultValue="" isStatic="true" name="numberOfGroups" type="int" visibility="PRIVATE"/>
