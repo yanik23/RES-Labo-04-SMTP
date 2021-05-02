@@ -46,6 +46,8 @@ Une fois cloné rendez-vous dans le dossier **/release** et localiser le fichier
 Ensuite lancez une console dans ce dossier et executez la commande:
 >java -jar RES-Labo-04-SMTP-1.0-SNAPSHOT.jar
 
+Ensuite il suffit de recharger la page web du mock serveur pour voir qu'il y a une liste d'emails qui sont apparues.
+
 ### Quelques explications sur le fonctionnement du code client.
 Il y a 3 fichiers se trouvant dans le dossier **/config** qui peuvent être modifiés.
 
