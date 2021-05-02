@@ -116,7 +116,7 @@ Classe définissant une personne qui sera une des victimes.
 #### PrankGenerator
 
 Cette classe est le coeur de génération de nos prank, elle contient divers fonction qui permettent de parser les fichiers
-mis a disposition, et d'ainsi génerer les les objet nécessaire pour creer les mails correctement
+mis a disposition, et d'ainsi génerer les les objet nécessaire pour creer les mails correctement.
 
 #### SmtpClient
 
@@ -125,4 +125,4 @@ notre prankGenerator pour les envoyer via le protocole SMTP.
 
 #### ConfigurationManager
 
-Cette classe lit le fichier de configuration config.properties
+Cette classe lit le fichier de configuration config.properties.
