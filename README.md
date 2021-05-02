@@ -27,7 +27,7 @@ Avant de se lancer dedans il faut savoir que ce projet sert à un but purement a
 Un mock serveur c'est tout simplement une simulation de serveur. On va simuler un serveur SMTP en local sur notre machine auquel on va envoyer nos emails.
 Il en existe plusieurs sur internet et github. 
 
-Pour notre projet nous avons décidé d'utiliser le serveur SMTP [MockMock](https://github.com/tweakers/MockMock) qui nous fourni une interface web bien pratique.
+Pour notre projet nous avons décidé d'utiliser le serveur SMTP [MockMock](https://github.com/DominiqueComte/MockMock) qui nous fourni une interface web bien pratique.
 
 Pour lancer le mock server il suffit cloner ce [repository](https://github.com/DominiqueComte/MockMock),
 
