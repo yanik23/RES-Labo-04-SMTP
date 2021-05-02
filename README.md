@@ -60,14 +60,14 @@ Il y a 3 fichiers se trouvant dans le dossier **/config** qui peuvent être modi
 
 |Propriété               |Exemples                          |Explication
 |----------------    |-------------------------------|-----------------------------|
-|*smtpServerAddress**| localhost ou 127.0.0.1        |  IP du serveur SMTP  |
-|*smtpServerPort**   | 25 ou 2525                    |Port du server SMTP |
-|*numberOfGroups**   |\<un entier\>                  |nombre de groupe a génerer |
+|*smtpServerAddress*| localhost ou 127.0.0.1        |  IP du serveur SMTP  |
+|*smtpServerPort*   | 25 ou 2525                    |Port du server SMTP |
+|*numberOfGroups*   |\<un entier\>                  |nombre de groupe a génerer |
 | *witnessesToCC*    | `unemail@gg.np`               |Liste de témoin a mettre en copie|
 |*victimFile*|./config/victimes.utf8|fichier qui contient la liste de victimes|
 |*messageFile*|./config/message.utf8|fichier qui contient la liste de message a disposition|
 
-**Remarque :** Il est important que le port SMTP du MockMock soit identitique à celui de client.
+**Remarque :** Il est important que le port SMTP du Mock Serveur soit identique à celui du client.
 
 
 #### messages.utf8
@@ -81,7 +81,7 @@ Pour la séparation entre les différents message nous utilisons la chaine de ca
 ![victime](images/victimes.PNG)
 
 Nous donne la liste des emails qui seront utilisé lors de notre prank. Il suffit de séparer chaque email par un retour à la ligne.
-le format des emails dois respecter la syntaxe suivante **prenom.nom@...**
+le format des emails doit respecter la syntaxe suivante **prenom.nom@...**
 
 ### Descriptions des classes et implémentations du projet
 ### UML
