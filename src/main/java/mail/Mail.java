@@ -9,29 +9,26 @@ import java.util.List;
 
 public class Mail {
 
-    private String subject;
-    private String content;
+    private Message message;
+
+
+
     private Person from;
     private List<Person> to;
     private List<Person> cc;
 
 
-    public Mail(String subject, String content, Person from, List<Person> to, List<Person> cc){
-        this.subject = subject;
-        this.content = content;
+    public Mail(Message message, Person from, List<Person> to, List<Person> cc){
+        this.message = message;
         this.from = from;
         this.to = to;
         this.cc = cc;
     }
 
-    public String getSubject() {
-        return subject;
-    }
 
-    public String getContent() {
-        return content;
+    public Message getMessage() {
+        return message;
     }
-
     public Person getFrom() {
         return from;
     }
@@ -47,8 +44,7 @@ public class Mail {
     @Override
     public String toString() {
         return "Mail{" +
-                "subject='" + subject + '\'' +
-                ", content='" + content + '\'' +
+                message +
                 ", from=" + from +
                 ", to=" + to +
                 '}';

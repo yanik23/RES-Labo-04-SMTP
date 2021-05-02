@@ -52,7 +52,6 @@ Il y a 3 fichiers se trouvant dans le dossier **/config** qui peuvent être modi
 #### config.properties
 ![configProperties](images/properties.PNG)
 
-Permet de choisir le serveur SMTP et le numéro de port auqel on veut se connecter ainsi que le nombre de groupe de victimes qu'on veut créer,
 
 |Propriété               |Exemples                          |Explication
 |----------------    |-------------------------------|-----------------------------|
@@ -66,18 +65,17 @@ Permet de choisir le serveur SMTP et le numéro de port auqel on veut se connect
 
 
 #### messages.utf8
+![message](images/message.PNG)
 
 Nous donne la liste des messages qui seront choisi aléatoirement pour chaque groupe.
 Chaque message doit commencer avec un sujet avec la syntaxe suivante:  **Subject: <le sujet qu'on veut mettre>** suivi d'un retour à la ligne. Tout ce qui suit sera le contenu du message.
 Pour la séparation entre les différents message nous utilisons la chaine de caractère **"=="**.
 
 #### victimList.utf8
+![victime](images/victimes.PNG)
 
 Nous donne la liste des emails qui seront utilisé lors de notre prank. Il suffit de séparer chaque email par un retour à la ligne.
 le format des emails dois respecter la syntaxe suivante **prenom.nom@...**
-
-
-
 
 ### Descriptions des classes et implémentations du projet
 ### UML

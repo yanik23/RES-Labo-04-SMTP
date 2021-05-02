@@ -100,7 +100,7 @@ public class PrankGenerator {
 
         for(int i = 0; i < listOfGroups.size(); ++i){
             Message message = getRandomMessage(messageList);
-            Mail mail = new Mail(message.getSubject(), message.getContent(), listOfGroups.get(i).getFrom(), listOfGroups.get(i).getTo(), readWitnesses());
+            Mail mail = new Mail(message, listOfGroups.get(i).getFrom(), listOfGroups.get(i).getTo(), readWitnesses());
             mailList.add(mail);
         }
 
