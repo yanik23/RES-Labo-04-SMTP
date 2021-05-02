@@ -31,6 +31,7 @@ Pour notre projet nous avons décidé d'utiliser le serveur SMTP [MockMock](http
 
 Pour lancer le mock server il suffit cloner ce [repository](https://github.com/tweakers/MockMock),
 faire la modification [suivante](https://github.com/tweakers/MockMock/pull/8/commits/fa4bea3079d88d7d7b9a28e3b0864ba6f3d9f7ff) dans le pom.xml (GoogleCode ayant fermé).
+
 Une fois cloné et la modification du pom.xml faites, rendez-vous dans le dossier **/release** et localiser le fichier **MockMock.jar**.
 Ensuite lancez une console dans ce dossier et executez la commande:
 >java -jar mockmock.jar
