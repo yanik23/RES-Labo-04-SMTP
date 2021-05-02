@@ -154,7 +154,7 @@ public class SmtpClient {
      * @throws IOException
      */
     public void run() throws IOException {
-        
+
         List<Person> personlist = prankGenerator.readVictimList(new FileInputStream(ConfigurationManager.getPropertyValue("victimFile")));
         List<Group> groupList = prankGenerator.buildRandomGroups(personlist, 8);
         List<Mail> mailList = prankGenerator.createRandomMails(groupList, new FileInputStream(ConfigurationManager.getPropertyValue("messagesFile")));

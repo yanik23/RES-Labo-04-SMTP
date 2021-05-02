@@ -1,3 +1,8 @@
+/**
+ * Model of a mail class
+ *  @author Janssens Emmanuel
+ *  @author Lange Yanik
+ */
 package mail;
 
 import java.util.List;

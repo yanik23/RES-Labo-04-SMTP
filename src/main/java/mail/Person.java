@@ -1,3 +1,8 @@
+/**
+ * Model of a person/victim
+   * @author Janssens Emmanuel
+   * @author Lange Yanik
+ */
 package mail;
 
 public class Person {

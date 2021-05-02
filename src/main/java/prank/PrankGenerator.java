@@ -1,3 +1,8 @@
+/**
+ * Generates all necessary data to send a prank mail
+ * @author Janssens Emmanuel
+ * @author Lange Yanik
+ */
 package prank;
 
 import mail.Group;
@@ -16,6 +21,13 @@ public class PrankGenerator {
     public PrankGenerator(){
 
     }
+
+    /**
+     * Reads a file and creates a list of victims
+     * @param victims
+     * @return
+     * @throws IOException
+     */
     public List<Person> readVictimList(InputStream victims) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(victims, StandardCharsets.UTF_8));
         List<Person> victimList = new ArrayList<Person>();
@@ -64,6 +76,14 @@ public class PrankGenerator {
         return groupList;
     }
 
+    /**
+     * Selects a random message from a list of messages
+     * and builds list of Mail/Prank that will be sent to each group
+     * @param listOfGroups list of groups generated
+     * @param messages file input message
+     * @return
+     * @throws IOException
+     */
     public List<Mail> createRandomMails(List<Group> listOfGroups, InputStream messages) throws IOException {
         List<Mail> mailList = new ArrayList<>();
         List<Message> messageList = readMessageList(messages);
@@ -77,10 +97,22 @@ public class PrankGenerator {
         return mailList;
     }
 
+    /**
+     * Select a random message from a list
+     * @param messageList list to be selected from
+     * @return a random message
+     */
     public Message getRandomMessage(List<Message> messageList){
         Random rand = new Random();
         return messageList.get(rand.nextInt(messageList.size()));
     }
+
+    /**
+     * Reads a list of messages
+     * @param messages
+     * @return
+     * @throws IOException
+     */
     public List<Message> readMessageList(InputStream messages) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(messages, StandardCharsets.UTF_8));
         List<Message> messageList = new ArrayList<Message>();

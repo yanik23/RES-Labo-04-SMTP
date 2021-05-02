@@ -1,3 +1,8 @@
+/**
+ * Model of a message
+ * @author Janssens Emmanuel
+ * @author Lange Yanik
+ */
 package mail;
 
 public class Message {
