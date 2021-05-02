@@ -2,7 +2,8 @@
 
 ## Introduction
 
-L'objectif de ce projet est de se familiariser avec le protocole SMTP et donc faire un programme pouvant envoyer des emails "prank" aussi appellà un serveur SMTP.
+L'objectif de ce projet est de se familiariser avec le protocole SMTP et donc faire un programme pouvant envoyer des emails "prank" à un serveur SMTP (Donc faire un client SMTP).
+ 
 
 ### Email "prank" ? Qu'est-ce que c'est ?
 
@@ -29,9 +30,33 @@ MockMock utilisant une interface web, il faudra ouvrir votre navigateur et rentr
 
 Pour le client il suffira de cloner ce repos et de le lancer depuis votre IDE préféré ou alors en lançant le .jar se trouvant dans le dossier release.
 
-### Quelques explications sur le fonctionnement du code client
+### Quelques explications sur le fonctionnement du code client.
+Il y a 3 fichiers se trouvant dans le dossier **/config** qui peuvent être modifiés.
+
+    - config.properties
+    - messages.utf8
+    - victimList.utf8
 
 
+#### config.properties
+
+Permet de choisir le serveur SMTP et le numéro de port auqel on veut se connecter ainsi que le nombre de groupe de victimes qu'on veut créer,
+
+#### messages.utf8
+
+Nous donne la liste des messages qui seront choisi aléatoirement pour chaque groupe.
+Chaque message doit commencer avec un sujet avec la syntaxe suivante:  **Subject: <le sujet qu'on veut mettre>** suivi d'un retour à la ligne. Tout ce qui suit sera le contenu du message.
+Pour la séparation entre les différents message nous utilisons la chaine de caractère **"=="**.
+
+#### victimList.utf8
+
+Nous donne la liste des emails qui seront utilisé lors de notre prank. Il suffit de séparer chaque email par un retour à la ligne.
+
+
+
+
+
+### Descriptions et implémentations du projet
 
 
 
