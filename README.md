@@ -56,8 +56,35 @@ Nous donne la liste des emails qui seront utilisé lors de notre prank. Il suffi
 
 
 
-### Descriptions et implémentations du projet
+### Descriptions des classes et implémentations du projet
 
+#### Group
 
+Un groupe est défini par une personne qui envoit le mail et une liste de personnes qui le reçoivent.
+
+#### Mail
+
+Un mail est défini par un sujet, un contenu, une personne qui envoit le mail et une liste de personnes qui l'envoient.
+
+#### Message
+
+Classe définissant un message. Un message est définit par un sujet et un contenu.
+
+#### Person
+
+Classe définissant une personne qui sera une des victimes.
+
+#### PrankGenerator
+
+Classe fournissant les fonctions pour générer notre prank
+**Liste des fonctions : **
+
+- List<Person> readVictimList(InputStream victims)
+- List<Group> buildRandomGroups(List<Person> personList, int numberOfGroups)
+- List<Mail> createRandomMails(List<Group> listOfGroups, InputStream messages)
+- Message getRandomMessage(List<Message> messageList)
+- List<Message> readMessageList(InputStream messages)
+
+#### SmtpClient
 
 
