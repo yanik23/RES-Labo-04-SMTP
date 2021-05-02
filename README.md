@@ -84,7 +84,7 @@ Nous donne la liste des emails qui seront utilisé lors de notre prank. Il suffi
 le format des emails doit respecter la syntaxe suivante **prenom.nom@...**
 
 ### Je veux changer les propriétés (nombre de groupe, adresses mails, blagues etc...)
-Il suffit d'éditer les fichiers dans le dossier **/release/config** et de relancer **RES-Labo-04-SMTP-1.0-SNAPSHOT.jar** avec la commande:
+Il suffit d'éditer les fichiers dans le dossier **/release/config** et de relancer **RES-Labo-04-SMTP-1.0-SNAPSHOT.jar** avec la même commande vu plus haut:
 >java -jar RES-Labo-04-SMTP-1.0-SNAPSHOT.jar
 
 
