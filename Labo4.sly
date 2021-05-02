@@ -1,34 +1,12 @@
 <?xml version="1.0" encoding="iso-8859-15" standalone="no"?>
 <classDiagram>
   <diagramElements defaultViewEntities="ALL" defaultViewEnum="true" defaultViewMethods="TYPE_AND_NAME" defaultVisibleTypes="true" informations="" name="">
-    <entity entityType="CLASS" id="65962" isAbstract="false" name="Prank" visibility="PUBLIC">
-      <attribute const="false" defaultValue="" isStatic="false" name="mail" type="Mail" visibility="PRIVATE"/>
-      <attribute const="false" defaultValue="" isStatic="false" name="victims" type="List&lt;Person&gt;" visibility="PRIVATE"/>
-      <attribute const="false" defaultValue="" isStatic="false" name="sender" type="Person" visibility="PRIVATE"/>
-    </entity>
-    <dependency id="65912" label="use">
-      <source>64493</source>
-      <target>64492</target>
+    <dependency id="69649" label="creates">
+      <source>69648</source>
+      <target>64493</target>
     </dependency>
-    <dependency id="65713" label="use">
-      <source>65612</source>
-      <target>64492</target>
-    </dependency>
-    <entity entityType="CLASS" id="65612" isAbstract="false" name="prank.PrankGenerator" visibility="PUBLIC">
-      <method isAbstract="false" isStatic="true" name="readPerson" returnType="List&lt;Person&gt;" view="DEFAULT" visibility="PUBLIC">
-        <variable const="false" name="file" type="int"/>
-      </method>
-      <method isAbstract="false" isStatic="true" name="buildGroups" returnType="List&lt;Group&gt;" view="DEFAULT" visibility="PUBLIC">
-        <variable const="false" name="persons" type="List&lt;Person&gt;"/>
-        <variable const="false" name="int" type="nbGroups"/>
-      </method>
-      <method isAbstract="false" isStatic="false" name="readMail" returnType="MailList&lt;Mail&gt;" view="DEFAULT" visibility="PUBLIC"/>
-      <method isAbstract="false" isStatic="false" name="buildPrank" returnType="void" view="DEFAULT" visibility="PUBLIC">
-        <variable const="false" name="persons" type="List&lt;Group&gt;"/>
-        <variable const="false" name="mail" type="List&lt;Mail&gt;"/>
-      </method>
-    </entity>
-    <association aggregation="NONE" direction="FIRST_TO_SECOND" id="65422" name="">
+    <entity entityType="CLASS" id="69648" isAbstract="false" name="Main" visibility="PUBLIC"/>
+    <association aggregation="COMPOSE" direction="FIRST_TO_SECOND" id="69614" name="">
       <role componentId="64487" name="" visibility="PRIVATE">
         <multiplicity>
           <min>1</min>
@@ -37,131 +15,323 @@
       </role>
       <role componentId="64488" name="" visibility="PRIVATE">
         <multiplicity>
-          <min>2</min>
-          <max>2147483647</max>
+          <min>1</min>
+          <max>1</max>
         </multiplicity>
       </role>
     </association>
-    <entity entityType="CLASS" id="64493" isAbstract="false" name="SmtpClient" visibility="PUBLIC"/>
-    <entity entityType="CLASS" id="64492" isAbstract="false" name="config.ConfigurationManager" visibility="PUBLIC">
-      <attribute const="false" defaultValue="" isStatic="true" name="smtpServerAdress" type="String" visibility="PRIVATE"/>
-      <attribute const="false" defaultValue="" isStatic="true" name="smtpServerPort" type="int" visibility="PRIVATE"/>
-      <attribute const="false" defaultValue="" isStatic="true" name="numberOfGroups" type="int" visibility="PRIVATE"/>
-      <attribute const="false" defaultValue="" isStatic="true" name="witnessesToCC" type="List&lt;String&gt;" visibility="PRIVATE"/>
-      <method isAbstract="false" isStatic="false" name="readFile" returnType="List&lt;String&gt;" view="DEFAULT" visibility="PRIVATE">
-        <variable const="false" name="file" type="String"/>
-      </method>
-      <method isAbstract="false" isStatic="false" name="readProprety" returnType="String" view="DEFAULT" visibility="PRIVATE">
-        <variable const="false" name="s" type="String"/>
-      </method>
-      <method isAbstract="false" isStatic="false" name="Initialize" returnType="void" view="DEFAULT" visibility="PUBLIC"/>
-    </entity>
-    <entity entityType="CLASS" id="64489" isAbstract="false" name="Mail" visibility="PUBLIC">
+    <association aggregation="COMPOSE" direction="FIRST_TO_SECOND" id="69609" name="">
+      <role componentId="64489" name="" visibility="PRIVATE">
+        <multiplicity>
+          <min>1</min>
+          <max>1</max>
+        </multiplicity>
+      </role>
+      <role componentId="64488" name="" visibility="PRIVATE">
+        <multiplicity>
+          <min>1</min>
+          <max>1</max>
+        </multiplicity>
+      </role>
+    </association>
+    <entity entityType="CLASS" id="69462" isAbstract="false" name="Message" visibility="PUBLIC">
       <attribute const="false" defaultValue="" isStatic="false" name="subject" type="String" visibility="PRIVATE"/>
       <attribute const="false" defaultValue="" isStatic="false" name="content" type="String" visibility="PRIVATE"/>
+      <method is-constructor="true" isAbstract="false" isStatic="false" name="Message" returnType="" view="DEFAULT" visibility="PUBLIC">
+        <variable const="false" name="m" type="String"/>
+        <variable const="false" name="s" type="String"/>
+      </method>
+      <method isAbstract="false" isStatic="false" name="getSubject" returnType="String" view="DEFAULT" visibility="PUBLIC"/>
+      <method isAbstract="false" isStatic="false" name="getContent" returnType="String" view="DEFAULT" visibility="PUBLIC"/>
+    </entity>
+    <association aggregation="COMPOSE" direction="FIRST_TO_SECOND" id="69112" name="">
+      <role componentId="65612" name="" visibility="PRIVATE">
+        <multiplicity>
+          <min>1</min>
+          <max>1</max>
+        </multiplicity>
+      </role>
+      <role componentId="64493" name="" visibility="PRIVATE">
+        <multiplicity>
+          <min>1</min>
+          <max>1</max>
+        </multiplicity>
+      </role>
+    </association>
+    <entity entityType="INTERFACE" id="68069" isAbstract="true" name="Interface" visibility="PUBLIC"/>
+    <inheritance id="67781" innerClass="true">
+      <child>67695</child>
+      <parent>64492</parent>
+    </inheritance>
+    <entity entityType="CLASS" id="67695" isAbstract="false" name="ConfigurationProperty" visibility="PUBLIC">
+      <attribute const="false" defaultValue="" isStatic="false" name="name" type="String" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="value" type="String" visibility="PRIVATE"/>
+    </entity>
+    <entity entityType="CLASS" id="64487" isAbstract="false" name="Group" visibility="PUBLIC">
       <attribute const="false" defaultValue="" isStatic="false" name="from" type="Person" visibility="PRIVATE"/>
-      <attribute const="false" defaultValue="" isStatic="false" name="To" type="List&lt;Person&gt;" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="to" type="List&lt;Person&gt;" visibility="PRIVATE"/>
+      <method is-constructor="true" isAbstract="false" isStatic="false" name="Group" returnType="" view="DEFAULT" visibility="PUBLIC">
+        <variable const="false" name="from" type="Person"/>
+        <variable const="false" name="to" type="List&lt;Person&gt;"/>
+      </method>
+      <method isAbstract="false" isStatic="false" name="getFrom" returnType="Person" view="DEFAULT" visibility="PUBLIC"/>
+      <method isAbstract="false" isStatic="false" name="getTo" returnType="List&lt;Person&gt;" view="DEFAULT" visibility="PUBLIC"/>
     </entity>
     <entity entityType="CLASS" id="64488" isAbstract="false" name="Person" visibility="PUBLIC">
       <attribute const="false" defaultValue="" isStatic="false" name="name" type="String" visibility="PRIVATE"/>
       <attribute const="false" defaultValue="" isStatic="false" name="surname" type="String" visibility="PRIVATE"/>
       <attribute const="false" defaultValue="" isStatic="false" name="email" type="String" visibility="PRIVATE"/>
     </entity>
-    <entity entityType="CLASS" id="64487" isAbstract="false" name="Group" visibility="PUBLIC"/>
+    <entity entityType="CLASS" id="64489" isAbstract="false" name="Mail" visibility="PUBLIC">
+      <attribute const="false" defaultValue="" isStatic="false" name="cc" type="String" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="content" type="String" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="from" type="Person" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="To" type="List&lt;Person&gt;" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="subject" type="String" visibility="PRIVATE"/>
+      <method isAbstract="false" isStatic="false" name="getCC" returnType="List&lt;Person&gt;" view="DEFAULT" visibility="PUBLIC"/>
+      <method isAbstract="false" isStatic="false" name="getContent" returnType="String" view="DEFAULT" visibility="PUBLIC"/>
+      <method isAbstract="false" isStatic="false" name="getFrom" returnType="Person" view="DEFAULT" visibility="PUBLIC"/>
+      <method isAbstract="false" isStatic="false" name="getTo" returnType="List&lt;Person&gt;" view="DEFAULT" visibility="PUBLIC"/>
+      <method isAbstract="false" isStatic="false" name="getSubject" returnType="String" view="DEFAULT" visibility="PUBLIC"/>
+      <method isAbstract="false" isStatic="false" name="toString()" returnType="String" view="DEFAULT" visibility="PUBLIC"/>
+    </entity>
+    <entity entityType="CLASS" id="64492" isAbstract="false" name="config.ConfigurationManager" visibility="PUBLIC">
+      <method isAbstract="false" isStatic="true" name="readFromInputStream" returnType="void" view="DEFAULT" visibility="PUBLIC">
+        <variable const="false" name="file" type="String"/>
+      </method>
+      <method isAbstract="false" isStatic="true" name="getPropertyValue" returnType="String" view="DEFAULT" visibility="PRIVATE">
+        <variable const="false" name="s" type="String"/>
+      </method>
+    </entity>
+    <entity entityType="CLASS" id="64493" isAbstract="false" name="SmtpClient" visibility="PUBLIC">
+      <attribute const="false" defaultValue="" isStatic="false" name="EHLO" type="String" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="MAILFROM" type="String" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="RCPTTO" type="String" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="DATA" type="String" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="HEADER_FROM" type="String" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="HEADER_TO" type="String" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="CC" type="String" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="QUIT" type="String" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="_client" type="Socket" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="_smtpInputStream" type="BufferedReader" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="_smtpOutputStream" type="BufferedWriter" visibility="PRIVATE"/>
+      <method isAbstract="false" isStatic="false" name="connect" returnType="void" view="DEFAULT" visibility="PUBLIC"/>
+      <method isAbstract="false" isStatic="false" name="run" returnType="void" view="DEFAULT" visibility="PUBLIC"/>
+      <method isAbstract="false" isStatic="false" name="sendCommand" returnType="void" view="DEFAULT" visibility="PUBLIC">
+        <variable const="false" name="cmd" type="String"/>
+        <variable const="false" name="args" type="String"/>
+      </method>
+      <method isAbstract="false" isStatic="false" name="displayServerRespoonse" returnType="void" view="DEFAULT" visibility="PRIVATE"/>
+      <method isAbstract="false" isStatic="false" name="sendMail" returnType="void" view="DEFAULT" visibility="PRIVATE">
+        <variable const="false" name="mail" type="Mail"/>
+      </method>
+      <method isAbstract="false" isStatic="false" name="writeContent" returnType="void" view="DEFAULT" visibility="PRIVATE">
+        <variable const="false" name="mail" type="Mail"/>
+      </method>
+      <method isAbstract="false" isStatic="false" name="writeHeader" returnType="void" view="DEFAULT" visibility="PRIVATE">
+        <variable const="false" name="mail" type="Mail"/>
+      </method>
+    </entity>
+    <entity entityType="CLASS" id="65612" isAbstract="false" name="prank.PrankGenerator" visibility="PUBLIC">
+      <attribute const="false" defaultValue="" isStatic="false" name="MIN_NUMBER_OF_VICTIMS" type="int" visibility="PRIVATE"/>
+      <method isAbstract="false" isStatic="false" name="buildRandomGroup" returnType="List&lt;Group&gt;" view="DEFAULT" visibility="PUBLIC">
+        <variable const="false" name="victims" type="List&lt;Person&gt;"/>
+      </method>
+      <method isAbstract="false" isStatic="false" name="createRandomMails" returnType="List&lt;Mail&gt;" view="DEFAULT" visibility="PUBLIC">
+        <variable const="false" name="groups" type="List&lt;Group&gt;"/>
+        <variable const="false" name="is" type="InputStream"/>
+      </method>
+      <method isAbstract="false" isStatic="false" name="getRandomMessage" returnType="Message" view="DEFAULT" visibility="PUBLIC">
+        <variable const="false" name="messages" type="List&lt;Message&gt;"/>
+      </method>
+      <method isAbstract="false" isStatic="false" name="readFromMailAdress" returnType="Person" view="DEFAULT" visibility="PRIVATE">
+        <variable const="false" name="mail" type="int"/>
+      </method>
+      <method isAbstract="false" isStatic="false" name="readMessageList" returnType="List&lt;Message&gt;" view="DEFAULT" visibility="PUBLIC">
+        <variable const="false" name="is" type="InputStream"/>
+      </method>
+      <method isAbstract="false" isStatic="false" name="readVictimList" returnType="List&lt;Person&gt;" view="DEFAULT" visibility="PUBLIC">
+        <variable const="false" name="is" type="InputStream"/>
+      </method>
+      <method isAbstract="false" isStatic="false" name="readWitnesses" returnType="List&lt;Person&gt;" view="DEFAULT" visibility="PUBLIC"/>
+    </entity>
+    <entity entityType="CLASS" id="65962" isAbstract="false" name="Prank" visibility="PUBLIC">
+      <attribute const="false" defaultValue="" isStatic="false" name="mail" type="Mail" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="victims" type="List&lt;Person&gt;" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="sender" type="Person" visibility="PRIVATE"/>
+    </entity>
   </diagramElements>
   <umlView grid="10" name="Main view" open="true">
-    <relationView color="-12566464" relationId="65422">
+    <relationView color="-12566464" relationId="67781">
       <line>
         <point>
-          <x>741</x>
-          <y>581</y>
+          <x>181</x>
+          <y>301</y>
         </point>
         <point>
-          <x>871</x>
-          <y>581</y>
+          <x>181</x>
+          <y>236</y>
+        </point>
+      </line>
+    </relationView>
+    <relationView color="-12566464" relationId="69112">
+      <line>
+        <point>
+          <x>1021</x>
+          <y>221</y>
+        </point>
+        <point>
+          <x>1141</x>
+          <y>221</y>
         </point>
       </line>
       <labelAssociation>
-        <x>783</x>
-        <y>557</y>
+        <x>1085</x>
+        <y>225</y>
         <w>0</w>
         <h>16</h>
       </labelAssociation>
       <roleAssociation>
-        <x>705</x>
-        <y>585</y>
+        <x>1025</x>
+        <y>225</y>
         <w>0</w>
         <h>16</h>
       </roleAssociation>
       <roleAssociation>
-        <x>875</x>
-        <y>585</y>
+        <x>1105</x>
+        <y>225</y>
         <w>0</w>
         <h>16</h>
       </roleAssociation>
       <multipliciteAssociation>
-        <x>749</x>
-        <y>558</y>
+        <x>1025</x>
+        <y>199</y>
         <w>8</w>
         <h>16</h>
       </multipliciteAssociation>
       <multipliciteAssociation>
-        <x>828</x>
-        <y>557</y>
-        <w>22</w>
+        <x>1127</x>
+        <y>199</y>
+        <w>8</w>
         <h>16</h>
       </multipliciteAssociation>
     </relationView>
-    <relationView color="-12566464" relationId="65713">
+    <relationView color="-12566464" relationId="69609">
       <line>
         <point>
-          <x>491</x>
-          <y>321</y>
+          <x>621</x>
+          <y>601</y>
         </point>
         <point>
-          <x>321</x>
-          <y>251</y>
+          <x>721</x>
+          <y>501</y>
         </point>
       </line>
       <labelAssociation>
-        <x>381</x>
-        <y>292</y>
-        <w>22</w>
+        <x>675</x>
+        <y>555</y>
+        <w>0</w>
         <h>16</h>
       </labelAssociation>
+      <roleAssociation>
+        <x>625</x>
+        <y>579</y>
+        <w>0</w>
+        <h>16</h>
+      </roleAssociation>
+      <roleAssociation>
+        <x>685</x>
+        <y>505</y>
+        <w>0</w>
+        <h>16</h>
+      </roleAssociation>
+      <multipliciteAssociation>
+        <x>607</x>
+        <y>579</y>
+        <w>8</w>
+        <h>16</h>
+      </multipliciteAssociation>
+      <multipliciteAssociation>
+        <x>689</x>
+        <y>479</y>
+        <w>8</w>
+        <h>16</h>
+      </multipliciteAssociation>
     </relationView>
-    <relationView color="-12566464" relationId="65912">
+    <relationView color="-12566464" relationId="69614">
       <line>
         <point>
-          <x>931</x>
-          <y>181</y>
+          <x>771</x>
+          <y>601</y>
         </point>
         <point>
-          <x>321</x>
-          <y>181</y>
+          <x>771</x>
+          <y>501</y>
         </point>
       </line>
       <labelAssociation>
-        <x>630</x>
-        <y>185</y>
-        <w>22</w>
+        <x>775</x>
+        <y>555</y>
+        <w>0</w>
+        <h>16</h>
+      </labelAssociation>
+      <roleAssociation>
+        <x>775</x>
+        <y>579</y>
+        <w>0</w>
+        <h>16</h>
+      </roleAssociation>
+      <roleAssociation>
+        <x>775</x>
+        <y>505</y>
+        <w>0</w>
+        <h>16</h>
+      </roleAssociation>
+      <multipliciteAssociation>
+        <x>757</x>
+        <y>579</y>
+        <w>8</w>
+        <h>16</h>
+      </multipliciteAssociation>
+      <multipliciteAssociation>
+        <x>757</x>
+        <y>505</y>
+        <w>8</w>
+        <h>16</h>
+      </multipliciteAssociation>
+    </relationView>
+    <relationView color="-12566464" relationId="69649">
+      <line>
+        <point>
+          <x>1251</x>
+          <y>481</y>
+        </point>
+        <point>
+          <x>1251</x>
+          <y>406</y>
+        </point>
+      </line>
+      <labelAssociation>
+        <x>1288</x>
+        <y>433</y>
+        <w>47</w>
         <h>16</h>
       </labelAssociation>
     </relationView>
-    <componentView color="-2079" componentID="64488" displayAttributes="true" displayDefault="true" displayMethods="true">
+    <componentView color="-2079" componentID="65612" displayAttributes="true" displayDefault="true" displayMethods="true">
       <geometry>
-        <x>870</x>
-        <y>550</y>
-        <w>150</w>
-        <h>100</h>
+        <x>550</x>
+        <y>140</y>
+        <w>470</w>
+        <h>175</h>
       </geometry>
     </componentView>
-    <componentView color="-2079" componentID="64489" displayAttributes="true" displayDefault="true" displayMethods="true">
+    <componentView color="-2079" componentID="64493" displayAttributes="true" displayDefault="true" displayMethods="true">
       <geometry>
-        <x>330</x>
-        <y>550</y>
-        <w>190</w>
-        <h>115</h>
+        <x>1140</x>
+        <y>80</y>
+        <w>300</w>
+        <h>325</h>
       </geometry>
     </componentView>
     <componentView color="-2079" componentID="64492" displayAttributes="true" displayDefault="true" displayMethods="true">
@@ -169,39 +339,55 @@
         <x>60</x>
         <y>150</y>
         <w>260</w>
-        <h>160</h>
+        <h>85</h>
       </geometry>
     </componentView>
-    <componentView color="-2079" componentID="64493" displayAttributes="true" displayDefault="true" displayMethods="true">
+    <componentView color="-2079" componentID="64489" displayAttributes="true" displayDefault="true" displayMethods="true">
       <geometry>
-        <x>930</x>
-        <y>160</y>
+        <x>460</x>
+        <y>600</y>
+        <w>190</w>
+        <h>220</h>
+      </geometry>
+    </componentView>
+    <componentView color="-2079" componentID="64488" displayAttributes="true" displayDefault="true" displayMethods="true">
+      <geometry>
+        <x>720</x>
+        <y>400</y>
         <w>150</w>
-        <h>55</h>
+        <h>100</h>
       </geometry>
     </componentView>
     <componentView color="-2079" componentID="64487" displayAttributes="true" displayDefault="true" displayMethods="true">
       <geometry>
-        <x>590</x>
-        <y>550</y>
+        <x>700</x>
+        <y>600</y>
+        <w>150</w>
+        <h>130</h>
+      </geometry>
+    </componentView>
+    <componentView color="-2079" componentID="67695" displayAttributes="true" displayDefault="true" displayMethods="true">
+      <geometry>
+        <x>130</x>
+        <y>300</y>
+        <w>150</w>
+        <h>85</h>
+      </geometry>
+    </componentView>
+    <componentView color="-2079" componentID="69462" displayAttributes="true" displayDefault="true" displayMethods="true">
+      <geometry>
+        <x>910</x>
+        <y>600</y>
+        <w>210</w>
+        <h>130</h>
+      </geometry>
+    </componentView>
+    <componentView color="-2079" componentID="69648" displayAttributes="true" displayDefault="true" displayMethods="true">
+      <geometry>
+        <x>1180</x>
+        <y>480</y>
         <w>150</w>
         <h>55</h>
-      </geometry>
-    </componentView>
-    <componentView color="-2079" componentID="65612" displayAttributes="true" displayDefault="true" displayMethods="true">
-      <geometry>
-        <x>490</x>
-        <y>300</y>
-        <w>390</w>
-        <h>115</h>
-      </geometry>
-    </componentView>
-    <componentView color="-2079" componentID="65962" displayAttributes="true" displayDefault="true" displayMethods="true">
-      <geometry>
-        <x>1080</x>
-        <y>300</y>
-        <w>150</w>
-        <h>100</h>
       </geometry>
     </componentView>
   </umlView>

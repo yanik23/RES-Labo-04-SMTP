@@ -16,7 +16,6 @@ import prank.PrankGenerator;
 import java.io.*;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 
@@ -36,7 +35,7 @@ public class SmtpClient {
     private BufferedReader _smtpInputStram;
     private BufferedWriter _smtpOutputStream;
 
-    PrankGenerator prankGenerator = new PrankGenerator();
+    PrankGenerator _prankGenerator = new PrankGenerator();
 
     /**
      * Initialises the configuration manager
@@ -162,9 +161,9 @@ public class SmtpClient {
      */
     public void run() throws IOException {
 
-        List<Person> personlist = prankGenerator.readVictimList(new FileInputStream(ConfigurationManager.getPropertyValue("victimFile")));
-        List<Group> groupList = prankGenerator.buildRandomGroups(personlist, 8);
-        List<Mail> mailList = prankGenerator.createRandomMails(groupList, new FileInputStream(ConfigurationManager.getPropertyValue("messagesFile")));
+        List<Person> personlist = _prankGenerator.readVictimList(new FileInputStream(ConfigurationManager.getPropertyValue("victimFile")));
+        List<Group> groupList = _prankGenerator.buildRandomGroups(personlist, 8);
+        List<Mail> mailList = _prankGenerator.createRandomMails(groupList, new FileInputStream(ConfigurationManager.getPropertyValue("messagesFile")));
 
         for(Mail mail : mailList) {
             sendMail(mail);

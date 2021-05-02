@@ -1,4 +1,10 @@
+
 # RES-Labo-04-SMTP
+
+|Auteur|email|
+|-----------------|--------------|
+| Emmanuel Janssens | emmanuel.janssens@heig-vd.ch|
+| Lange Yanik|yanik.lange@heig-vd.ch
 
 ## Introduction
 
@@ -16,18 +22,23 @@ L'utilisateur choisira ensuite le nombre de groupe de victimes qu'il veut créer
 Avant de se lancer dedans il faut savoir que ce projet sert à un but purement académique et d'apprentissage. Il est ilégal par la loi d'envoyer des emails forgés ou encore de se faire passer pour quelqu'un d'autres. D'ailleurs vu que la plupart de fournisseurs internet bloquent les envois et que nous ne voulons pas surcharger un vrai serveur SMTP, nous allons utiliser un "Mock Server" SMTP.
 
 ### C'est quoi un "Mock Server" ?
+![mockserver](images/mockmock.PNG)
 
 Un mock serveur c'est tout simplement une simulation de serveur. On va simuler un serveur SMTP en local sur notre machine auquel on va envoyer nos emails.
-Il en existe plusieurs sur internet et github. Pour notre projet nous avons décidé d'utiliser le serveur SMTP [MockMock](https://github.com/tweakers/MockMock) qui nous fourni une interface web bien pratique.
-Donc pour la mise en place du Mock server il suffit donc de cloner le repos, faire la modification [suivante](https://github.com/tweakers/MockMock/pull/8/commits/fa4bea3079d88d7d7b9a28e3b0864ba6f3d9f7ff) dans le pom.xml (GoogleCode ayant fermé) et de lancer le programme avec votre IDE ou alors en téléchargent le jar directement sur leurs github.
+Il en existe plusieurs sur internet et github. 
 
+Pour notre projet nous avons décidé d'utiliser le serveur SMTP [MockMock](https://github.com/tweakers/MockMock) qui nous fourni une interface web bien pratique.
+
+Pour lancer le mock server il suffit cloner ce [repository](https://github.com/tweakers/MockMock) .
+Une fois cloné rendez vous dans le dossier release et localiser le fichier MockMock.jar
+lancer une console dans ce dossier et executez la commande:
+>java -jar mockmock.jar
 ### J'ai lancé MockMock mais rien ne se passse ?
 
-MockMock utilisant une interface web, il faudra ouvrir votre navigateur et rentrer commen URL : **localhost:8282** (Le port http 8282 étant celui par défault dans MockMock).
-
+Dans un navigateur web entrez l'url suivant **localhost:8282** le port 8282 etant le port par défault utilisé par mockmock
 
 ### Ok, j'ai un serveur qui peut recevoir de mails, et le client ?
-
+89
 Pour le client il suffira de cloner ce repos et de le lancer depuis votre IDE préféré ou alors en lançant le .jar se trouvant dans le dossier release.
 
 ### Quelques explications sur le fonctionnement du code client.
@@ -39,8 +50,20 @@ Il y a 3 fichiers se trouvant dans le dossier **/config** qui peuvent être modi
 
 
 #### config.properties
+![configProperties](images/properties.PNG)
 
 Permet de choisir le serveur SMTP et le numéro de port auqel on veut se connecter ainsi que le nombre de groupe de victimes qu'on veut créer,
+
+|Propriété               |Exemples                          |Explication
+|----------------    |-------------------------------|-----------------------------|
+|*smtpServerAddress**| localhost ou 127.0.0.1        |  IP du serveur SMTP  |
+|*smtpServerPort**   | 25 ou 2525                    |Port du server SMTP |
+|*numberOfGroups**   |\<un entier\>                  |nombre de groupe a génerer |
+| *witnessesToCC*    | `unemail@gg.np`               |Liste de témoin a mettre en copie|
+|*victimFile*|./config/victimes.utf8|fichier qui contient la liste de victimes|
+|*messageFile*|./config/message.utf8|fichier qui contient la liste de message a disposition|
+
+
 
 #### messages.utf8
 
@@ -51,12 +74,14 @@ Pour la séparation entre les différents message nous utilisons la chaine de ca
 #### victimList.utf8
 
 Nous donne la liste des emails qui seront utilisé lors de notre prank. Il suffit de séparer chaque email par un retour à la ligne.
-
+le format des emails dois respecter la syntaxe suivante **prenom.nom@...**
 
 
 
 
 ### Descriptions des classes et implémentations du projet
+### UML
+![UML](images/UML.png)
 
 #### Group
 
@@ -75,16 +100,23 @@ Classe définissant un message. Un message est définit par un sujet et un conte
 Classe définissant une personne qui sera une des victimes.
 
 #### PrankGenerator
+Cette classe est le coeur de génération de nos prank, elle contient divers fonction qui permettent de parser les fichiers
+mis a disposition, et d'ainsi génerer les les objet nécessaire pour creer les mails correctement
 
-Classe fournissant les fonctions pour générer notre prank
-**Liste des fonctions : **
+**Liste des fonctions :**
 
 - List<Person> readVictimList(InputStream victims)
+  * Lis le fichier victim.utf8 et parse les donnée pour creer une liste de personnes
 - List<Group> buildRandomGroups(List<Person> personList, int numberOfGroups)
+  * Utilise la propriété numberOfGroup et contruit le nombre de groupe approprié avec une sélection aléatoire de personnes
 - List<Mail> createRandomMails(List<Group> listOfGroups, InputStream messages)
+  * Construit une liste de Mails qui sont nos prank a être envoyé
 - Message getRandomMessage(List<Message> messageList)
+  * retourne un message aléatoire dans une liste de message
 - List<Message> readMessageList(InputStream messages)
+    * lis le fichier message.utf8 retourne une liste de message
 
 #### SmtpClient
 
-
+cette classe permet de mettre en oeuvre un client smtp basique, ce dernier utilises les données générées par 
+notre prankGenerator pour les envoyer via le protocole SMTP
