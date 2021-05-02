@@ -28,6 +28,7 @@ public class SmtpClient {
     private final  String DATA = "DATA";
     private final String HEADER_FROM = "From: ";
     private final String HEADER_TO = "To: ";
+    private final String CC = "cc: ";
     private final String QUIT = "QUIT";
 
     private Socket _client;
@@ -93,6 +94,11 @@ public class SmtpClient {
         StringBuilder cmd = new StringBuilder();
         cmd.append("Subject: =?UTF-8?B?"+ Base64.getEncoder().encodeToString(mail.getSubject().getBytes(StandardCharsets.UTF_8)) +"?=\r\n");
         cmd.append("Content-Type: text/plain; charset=utf-8\r\n");
+        StringBuilder argsCc = new StringBuilder();
+        for(Person cc : mail.getCc()){
+            argsCc.append(cc.getEmail()).append(",");
+        }
+        cmd.append("cc: "+argsCc.toString()+"\r\n");
         return cmd.toString();
     }
 
@@ -122,7 +128,8 @@ public class SmtpClient {
             sendCommand(EHLO, ConfigurationManager.getPropertyValue("smtpServerAdress"));
 
             //Write mail writer
-            sendCommand(MAILFROM,mail.getFrom().getEmail());
+            Person from = mail.getFrom();
+            sendCommand(MAILFROM,from.getSurname() + " " + from.getName()+ "<"+from.getEmail()+">");
 
             //write each recipient
             for(Person rcptTo : mail.getTo()){
@@ -135,7 +142,7 @@ public class SmtpClient {
 
             StringBuilder argsTo = new StringBuilder();
             for(Person personTo : mail.getTo()){
-                argsTo.append(personTo.getEmail()).append(",");
+                argsTo.append(personTo.getSurname()).append(" ").append(personTo.getName()).append("<").append(personTo.getEmail()).append(">").append(",");
             }
             sendCommand(HEADER_TO,argsTo.toString());
 

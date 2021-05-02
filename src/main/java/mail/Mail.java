@@ -13,12 +13,15 @@ public class Mail {
     private String content;
     private Person from;
     private List<Person> to;
+    private List<Person> cc;
 
-    public Mail(String subject, String content, Person from, List<Person> to){
+
+    public Mail(String subject, String content, Person from, List<Person> to, List<Person> cc){
         this.subject = subject;
         this.content = content;
         this.from = from;
         this.to = to;
+        this.cc = cc;
     }
 
     public String getSubject() {
@@ -35,6 +38,10 @@ public class Mail {
 
     public List<Person> getTo() {
         return to;
+    }
+
+    public List<Person> getCc() {
+        return cc;
     }
 
     @Override

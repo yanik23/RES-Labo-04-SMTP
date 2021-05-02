@@ -5,6 +5,7 @@
  */
 package prank;
 
+import config.ConfigurationManager;
 import mail.Group;
 import mail.Mail;
 import mail.Message;
@@ -22,6 +23,12 @@ public class PrankGenerator {
 
     }
 
+    private Person readFromMailAdress(String mailAdress){
+        String firstName = mailAdress.substring(0,mailAdress.indexOf("."));
+        String lastName = mailAdress.substring(mailAdress.indexOf(".")+1, mailAdress.indexOf("@"));
+
+        return new Person(firstName, lastName, mailAdress);
+    }
     /**
      * Reads a file and creates a list of victims
      * @param victims
@@ -33,16 +40,19 @@ public class PrankGenerator {
         List<Person> victimList = new ArrayList<Person>();
         String line;
         while ((line = br.readLine()) != null && line.length() != 0) {
-
-            String firstName = line.substring(0,line.indexOf("."));
-            String lastName = line.substring(line.indexOf(".")+1, line.indexOf("@"));
-
-            Person p = new Person(firstName, lastName, line);
-            victimList.add(p);
+            victimList.add(readFromMailAdress(line));
         }
         return victimList;
     }
-
+    public List<Person> readWitnesses(){
+        List<String> witnesses = Arrays.asList(ConfigurationManager.getPropertyValue("withnessToCC").split(","));
+        List<Person> persons = new ArrayList<>();
+        for(String mail : witnesses)
+        {
+            persons.add(readFromMailAdress(mail));
+        }
+        return persons;
+    }
     /**
      *
      * @param personList list of persons where we will pick randomly
@@ -90,7 +100,7 @@ public class PrankGenerator {
 
         for(int i = 0; i < listOfGroups.size(); ++i){
             Message message = getRandomMessage(messageList);
-            Mail mail = new Mail(message.getSubject(), message.getContent(), listOfGroups.get(i).getFrom(), listOfGroups.get(i).getTo());
+            Mail mail = new Mail(message.getSubject(), message.getContent(), listOfGroups.get(i).getFrom(), listOfGroups.get(i).getTo(), readWitnesses());
             mailList.add(mail);
         }
 
