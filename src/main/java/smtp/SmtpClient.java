@@ -1,3 +1,10 @@
+/**
+ * This class simulates a simple smtp client that sends mails
+ * generated with the prank generator
+ * @author Janssens Emmanuel
+ * @author Lange Yanik
+ *
+ */
 package smtp;
 
 import config.ConfigurationManager;
@@ -30,15 +37,27 @@ public class SmtpClient {
 
     PrankGenerator prankGenerator = new PrankGenerator();
 
+    /**
+     * Initialises the configuration manager
+     * @throws IOException
+     */
     public SmtpClient() throws IOException {
-        ConfigurationManager.readFromInputStream(new FileInputStream("./config/app.config"));
+        ConfigurationManager.readFromInputStream(new FileInputStream("./config/config.properties"));
     }
 
+    /**
+     * display response from the smtp server
+     * @throws IOException
+     */
     private void displayServerResponse() throws IOException {
         String s = _smtpInputStram.readLine();
         System.out.println(s);
     }
 
+    /**
+     * Connect to the smtp server
+     * @throws IOException
+     */
     public void connect() throws IOException {
         try{
             _client = new Socket(ConfigurationManager.getPropertyValue("smtpServerAdress"),Integer.parseInt(ConfigurationManager.getPropertyValue("smtpServerPort")));
@@ -50,6 +69,13 @@ public class SmtpClient {
             throw new IOException("could not connect to server: " + ConfigurationManager.getPropertyValue("smtpServerAdress") + " at port " + ConfigurationManager.getPropertyValue("smtpServerPort"));
         }
     }
+
+    /**
+     * Write and send message to the server
+     * @param cmdLine SMTP command to be send
+     * @param args if any arguments are required
+     * @throws IOException
+     */
     public void sendCommand(String cmdLine, String args) throws IOException {
         _smtpOutputStream.write(cmdLine + " " + args + "\r\n");
         _smtpOutputStream.flush();
@@ -57,12 +83,24 @@ public class SmtpClient {
         displayServerResponse();
 
     }
+
+    /**
+     * Write the mail header
+     * @param mail mail data
+     * @return
+     */
     private String writeHeader(Mail mail){
         StringBuilder cmd = new StringBuilder();
         cmd.append("Subject: =?UTF-8?B?"+ Base64.getEncoder().encodeToString(mail.getSubject().getBytes(StandardCharsets.UTF_8)) +"?=\r\n");
         cmd.append("Content-Type: text/plain; charset=utf-8\r\n");
         return cmd.toString();
     }
+
+    /**
+     * Write the content body of the mail
+     * @param mail
+     * @throws IOException
+     */
     private void writeContent(Mail mail) throws IOException {
         StringBuilder cmd = new StringBuilder(writeHeader(mail));
         cmd.append(mail.getContent());
@@ -70,6 +108,11 @@ public class SmtpClient {
         sendCommand(cmd.toString(),"");
     }
 
+    /**
+     * executes the mail sending protocol once
+     * @param mail
+     * @throws IOException
+     */
     private void sendMail(Mail mail) throws IOException {
         connect();
 
@@ -105,13 +148,16 @@ public class SmtpClient {
         _smtpOutputStream.close();
         _client.close();
     }
+
+    /**
+     * For each group generated a random message is selected and send to each victims
+     * @throws IOException
+     */
     public void run() throws IOException {
-
-        List<Person> personlist = new ArrayList<Person>();
-
-        personlist = prankGenerator.readVictimList(new FileInputStream("./config/victimList.txt"));
+        
+        List<Person> personlist = prankGenerator.readVictimList(new FileInputStream(ConfigurationManager.getPropertyValue("victimFile")));
         List<Group> groupList = prankGenerator.buildRandomGroups(personlist, 8);
-        List<Mail> mailList = prankGenerator.createRandomMails(groupList, new FileInputStream("./config/messages.txt"));
+        List<Mail> mailList = prankGenerator.createRandomMails(groupList, new FileInputStream(ConfigurationManager.getPropertyValue("messagesFile")));
 
         for(Mail mail : mailList) {
             sendMail(mail);
