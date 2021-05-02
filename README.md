@@ -29,8 +29,7 @@ Il en existe plusieurs sur internet et github.
 
 Pour notre projet nous avons décidé d'utiliser le serveur SMTP [MockMock](https://github.com/tweakers/MockMock) qui nous fourni une interface web bien pratique.
 
-Pour lancer le mock server il suffit cloner ce [repository](https://github.com/tweakers/MockMock),
-faire la modification [suivante](https://github.com/tweakers/MockMock/pull/8/commits/fa4bea3079d88d7d7b9a28e3b0864ba6f3d9f7ff) dans le pom.xml (GoogleCode ayant fermé).
+Pour lancer le mock server il suffit cloner ce [repository](https://github.com/DominiqueComte/MockMock),
 
 Une fois cloné et la modification du pom.xml faites, rendez-vous dans le dossier **/release** et localiser le fichier **MockMock.jar**.
 Ensuite lancez une console dans ce dossier et executez la commande:
@@ -84,7 +83,7 @@ Pour la séparation entre les différents message nous utilisons la chaine de ca
 Nous donne la liste des emails qui seront utilisé lors de notre prank. Il suffit de séparer chaque email par un retour à la ligne.
 le format des emails doit respecter la syntaxe suivante **prenom.nom@...**
 
-###Je veux changer les propriétés (nombre de groupe, adresses mails, blagues etc...)
+### Je veux changer les propriétés (nombre de groupe, adresses mails, blagues etc...)
 Il suffit après avoir édité chaque fichier comme vous le voulez de lancer une console dans le dossier racine du projet **/RES Labo 04 SMTP** et executez la commande:
 >mvn clean install
 
