@@ -6,6 +6,7 @@ import mail.Message;
 import mail.Person;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 public class PrankGenerator {
@@ -16,7 +17,7 @@ public class PrankGenerator {
 
     }
     public List<Person> readVictimList(InputStream victims) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(victims));
+        BufferedReader br = new BufferedReader(new InputStreamReader(victims, StandardCharsets.UTF_8));
         List<Person> victimList = new ArrayList<Person>();
         String line;
         while ((line = br.readLine()) != null && line.length() != 0) {
@@ -81,7 +82,7 @@ public class PrankGenerator {
         return messageList.get(rand.nextInt(messageList.size()));
     }
     public List<Message> readMessageList(InputStream messages) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(messages));
+        BufferedReader br = new BufferedReader(new InputStreamReader(messages, StandardCharsets.UTF_8));
         List<Message> messageList = new ArrayList<Message>();
 
         String subject = "";

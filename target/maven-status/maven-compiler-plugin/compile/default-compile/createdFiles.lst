@@ -1,0 +1,10 @@
+Main.class
+mail\Message.class
+prank\PrankGenerator.class
+mail\Person.class
+config\ConfigurationManager$ConfigurationProperty.class
+config\ConfigurationManager.class
+mail\Mail.class
+prank\Prank.class
+smtp\SmtpClient.class
+mail\Group.class
