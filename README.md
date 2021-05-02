@@ -84,12 +84,7 @@ Nous donne la liste des emails qui seront utilisé lors de notre prank. Il suffi
 le format des emails doit respecter la syntaxe suivante **prenom.nom@...**
 
 ### Je veux changer les propriétés (nombre de groupe, adresses mails, blagues etc...)
-Il suffit après avoir édité chaque fichier comme vous le voulez de lancer une console dans le dossier racine du projet **/RES Labo 04 SMTP** et executez la commande:
->mvn clean install
-
-Ensuite il suffit de se rendre dans le dossier **/target** et de copier le fichier **RES-Labo-04-SMTP-1.0-SNAPSHOT.jar** dans le dossier **/release**.
-Ceci va remplacer le .jar fourni par le projet par le votre.
-Ensuite suffit de lancer comme précédement le nouveau fichier .jar dans le dossier **/release** avec la commande
+Il suffit d'éditer les fichiers dans le dossier **/release/config** et de relancer **RES-Labo-04-SMTP-1.0-SNAPSHOT.jar** avec la commande:
 >java -jar RES-Labo-04-SMTP-1.0-SNAPSHOT.jar
 
 
