@@ -4,7 +4,7 @@
 |Auteur|email|
 |-----------------|--------------|
 | Emmanuel Janssens | emmanuel.janssens@heig-vd.ch|
-| Lange Yanik | yanik.lange@heig-vd.ch
+| Yanik Lange | yanik.lange@heig-vd.ch
 
 ## Introduction
 
