@@ -30,19 +30,23 @@ Il en existe plusieurs sur internet et github.
 Pour notre projet nous avons décidé d'utiliser le serveur SMTP [MockMock](https://github.com/tweakers/MockMock) qui nous fourni une interface web bien pratique.
 
 Pour lancer le mock server il suffit cloner ce [repository](https://github.com/tweakers/MockMock).
-Une fois cloné rendez-vous dans le dossier release et localiser le fichier MockMock.jar
-lancer une console dans ce dossier et executez la commande:
+Une fois cloné rendez-vous dans le dossier release et localiser le fichier MockMock.jar.
+Ensuite lancez une console dans ce dossier et executez la commande:
 >java -jar mockmock.jar
 
 
 
 ### J'ai lancé MockMock mais rien ne se passse ?
 
-Dans un navigateur web entrez l'url suivante **localhost:8282** le port 8282 etant le port par défault utilisé par mockmock.
+Dans un navigateur web entrez l'url suivante **localhost:8282** le port http 8282 etant le port par défault utilisé par mockmock (le port SMTP par défault est le 25).
 
 ### Ok, j'ai un serveur qui peut recevoir de mails, et le client ?
 89
 Pour le client il suffira de cloner ce repos et de le lancer depuis votre IDE préféré ou alors en lançant le .jar se trouvant dans le dossier release.
+Pour lancer le client il suffit de cloner ce repository.
+Une fois cloné rendez-vous dans le dossier release et localiser le fichier RES-Labo-04-SMTP-1.0-SNAPSHOT.jar.
+Ensuite lancez une console dans ce dossier et executez la commande:
+>java -jar RES-Labo-04-SMTP-1.0-SNAPSHOT.jar
 
 ### Quelques explications sur le fonctionnement du code client.
 Il y a 3 fichiers se trouvant dans le dossier **/config** qui peuvent être modifiés.
@@ -65,6 +69,7 @@ Il y a 3 fichiers se trouvant dans le dossier **/config** qui peuvent être modi
 |*victimFile*|./config/victimes.utf8|fichier qui contient la liste de victimes|
 |*messageFile*|./config/message.utf8|fichier qui contient la liste de message a disposition|
 
+**Remarque :** Il est important que le port SMTP du MockMock soit identitique à celui de client.
 
 
 #### messages.utf8
@@ -120,4 +125,4 @@ mis a disposition, et d'ainsi génerer les les objet nécessaire pour creer les 
 #### SmtpClient
 
 cette classe permet de mettre en oeuvre un client smtp basique, ce dernier utilises les données générées par 
-notre prankGenerator pour les envoyer via le protocole SMTP
+notre prankGenerator pour les envoyer via le protocole SMTP.
